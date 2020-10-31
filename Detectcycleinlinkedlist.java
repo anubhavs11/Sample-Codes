@@ -1,3 +1,5 @@
+package datastructures;
+
 import java.io.*;
 import java.math.*;
 import java.security.*;
@@ -6,7 +8,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-public class CycleDetection {
+public class Detectcycleinlinkedlist {
 
     static class SinglyLinkedListNode {
         public int data;
@@ -52,6 +54,8 @@ public class CycleDetection {
         }
     }
 
+    // Complete the hasCycle function below.
+
     /*
      * For your reference:
      *
@@ -61,86 +65,26 @@ public class CycleDetection {
      * }
      *
      */
-    import java.io.*;
-    import java.math.*;
-    import java.security.*;
-    import java.text.*;
-    import java.util.*;
-    import java.util.concurrent.*;
-    import java.util.regex.*;
+    static boolean hasCycle(SinglyLinkedListNode head) {
 
-    public class Solution {
+        if(head==null)
+        return false;
 
-        static class SinglyLinkedListNode {
-            public int data;
-            public SinglyLinkedListNode next;
+        SinglyLinkedListNode slowptr = head;
+        SinglyLinkedListNode fastptr = head;
 
-            public SinglyLinkedListNode(int nodeData) {
-                this.data = nodeData;
-                this.next = null;
+        while (fastptr != null && fastptr.next != null){
+            slowptr = slowptr.next;
+            fastptr = fastptr.next.next;
+
+            if (slowptr == fastptr){
+                return true;
             }
         }
 
-        static class SinglyLinkedList {
-            public SinglyLinkedListNode head;
-            public SinglyLinkedListNode tail;
+    return false;
+}
 
-            public SinglyLinkedList() {
-                this.head = null;
-                this.tail = null;
-            }
-
-            public void insertNode(int nodeData) {
-                SinglyLinkedListNode node = new SinglyLinkedListNode(nodeData);
-
-                if (this.head == null) {
-                    this.head = node;
-                } else {
-                    this.tail.next = node;
-                }
-
-                this.tail = node;
-            }
-        }
-
-        public static void printSinglyLinkedList(SinglyLinkedListNode node, String sep, BufferedWriter bufferedWriter) throws IOException {
-            while (node != null) {
-                bufferedWriter.write(String.valueOf(node.data));
-
-                node = node.next;
-
-                if (node != null) {
-                    bufferedWriter.write(sep);
-                }
-            }
-        }
-        static boolean hasCycle(SinglyLinkedListNode head) {
-
-            //Creating 2 pointers which are pointing to head
-            SinglyLinkedListNode firstPointer = head;
-            SinglyLinkedListNode SecondPointer = head;
-
-            //iterating unless null pointer
-            while(firstPointer!=null && firstPointer.next != null ){
-
-                //increment first pointer unless it points to null
-                if(firstPointer!=null && firstPointer.next != null){
-                    firstPointer = firstPointer.next.next;
-                }
-
-                //increment second pointer unless it points to null
-                SecondPointer = SecondPointer.next; 
-
-                //Cycle if both pointers pointing to same node
-                if(firstPointer == SecondPointer){
-                    return true;
-                }
-            }
-            //No Cycle Found i.e. returns false
-            return false;
-    }
-
-        private static final Scanner scanner = new Scanner(System.in);
 
     private static final Scanner scanner = new Scanner(System.in);
 
